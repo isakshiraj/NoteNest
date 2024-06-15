@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/49a2f38d1d.js' crossorigin='anonymous'></script>
+    <title>Notes app</title>
+
+    <link rel = "icon" href = "notes-1.png" type = "image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous">      
+    <style>
+        body{background: var(--color-secondary)}
+
+        .toast{
+            color: white;
+            background: var(--color-secondary); 
+        }
+        .fade {
+            transition-duration: 1s;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="scroll-up-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+        <img class="logo" src="notes-1.png" alt="">
+        
+        <a class="navbar-brand" href="#">Notes</a>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchTxt">
+            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+            <i id="mute-button" onclick="toggleMute()" class='fas fa-volume-up blue-mute'></i>
+            <form class="form-inline my-2 my-lg-0">
+
+                <!-- theme switcher -->
+                <div class="container">
+
+                    <label id="switch" class="switch">
+
+                        <input type="checkbox" onchange="toggleTheme()" id="slider">
+                        <span class="slider round"></span>
+
+                        <!-- <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" id="searchTxt" type="search" placeholder="Search" aria-label="Search"> -->
+            </form>
+
+        </div>
+        </div>
+
+    </nav>
+    <!-- navbar -->
+
+    <div class="container my-3">
+        <h1 style="color: rgb(134, 153, 237);">Welcome To Notes</h1>
+        <div id="styled-message-container"></div>
+        <div class="card">
+            <div class="card-body" style="background: var(--color-secondary);">
+                <h5 class="card-title" style="color: rgb(134, 153, 237);">Add a note
+                    <audio src="sounds/mixkit-tile-game-reveal-960.wav" class="sound"></audio>
+                </h5>
+                <div class="form-group">
+                    <input class="form-control" id="heading" rows="1" placeholder="Title"
+                    onkeydown="if(event.keyCode==13 && !event.ctrlKey && !event.shiftKey){document.getElementById('addTxt').focus(); return false;}"
+                    ></input> <br>
+                    <!-- Adding checkbox in  HTML -->
+                    <input type="checkbox" id="useDefaultTitle"> Use Default Title<br> 
+                    <textarea class="form-control" id="addTxt" rows="3" placeholder="Note" 
+                    onkeydown="if(event.keyCode==13 && !event.ctrlKey && !event.shiftKey){document.getElementById('addBtn').click(); return false;}"
+                    ></textarea>
+
+                </div>
+                <button class="btn btn-primary" id="addBtn" style="margin-top: 7px;">Add Note</button>
+                <button class="btn btn-primary" id="editBtn" style="margin-top: 7px;">DONE</button>
+            </div>
+        </div>
+        <h3 style="color: rgb(134, 153, 237); margin:1rem 0;">Your Notes</h3>
+        <div id="notes" class="row container-fluid" style="gap: 1rem;"> </div>
+    </div>
+</div>
+
+
+<!-- *** Toast Message *** -->
+  <div id="" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-animation="true" data-autohide="true" data-delay="1000" style="position: absolute; top:90vh; right:18px;color: var(--font-color);  ">
+      <img src="images/check-mark.png" class="rounded mr-2" width="23px">
+      <span>Note Created Successfully!</span>
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<script src="app.js"></script>
+
+</body>
+
+</html>
